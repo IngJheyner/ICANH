@@ -1,0 +1,52 @@
+# Archivos de entorno y configuración sensible
+.env
+.env.backup
+.env.production
+/auth.json
+
+# Dependencias
+/vendor
+/node_modules
+
+# IDEs y editores
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+.phpactor.json
+
+# Laravel
+.phpunit.result.cache
+/.phpunit.cache
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/storage/logs/*
+!/storage/logs/.gitkeep
+/storage/framework/cache/*
+!/storage/framework/cache/.gitkeep
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitkeep
+/storage/framework/testing/*
+!/storage/framework/testing/.gitkeep
+/storage/framework/views/*
+!/storage/framework/views/.gitkeep
+/bootstrap/cache/*
+!/bootstrap/cache/.gitkeep
+
+# Docker
+/temp
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+*.log
+
+# Homestead
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
