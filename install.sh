@@ -23,6 +23,10 @@ sleep 5
 echo "📊 Ejecutando migraciones..."
 docker-compose exec -T app php artisan migrate --force
 
+# Ejecutar seeders para datos de prueba
+echo "🌱 Ejecutando seeders (datos de prueba)..."
+docker-compose exec -T app php artisan db:seed --force
+
 # Configurar permisos
 echo "🔒 Configurando permisos..."
 # Primero, hacer que tu usuario sea dueño de todos los archivos
@@ -40,5 +44,10 @@ echo "===================================="
 echo "  📡 API:         http://localhost:8000"
 echo "  🗄️  PHPMyAdmin: http://localhost:8080"
 echo "===================================="
+echo ""
+echo "📊 Datos de prueba creados:"
+echo "   - 10 Marcas de Vehículos"
+echo "   - 15 Personas"
+echo "   - 25 Vehículos (con propietarios)"
 echo ""
 

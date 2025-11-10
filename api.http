@@ -1,0 +1,258 @@
+### Variables
+@baseUrl = http://localhost:8000/api
+@contentType = application/json
+@accept = application/json
+
+###############################################################################
+# MARCAS DE VEHÍCULOS
+###############################################################################
+
+### 1. Listar todas las marcas
+GET {{baseUrl}}/marcas-vehiculo
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 2. Obtener marca específica
+GET {{baseUrl}}/marcas-vehiculo/1
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 3. Crear nueva marca
+POST {{baseUrl}}/marcas-vehiculo
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "brand_name": "Nueva marca",
+  "country": "País"
+}
+
+### 4. Actualizar marca existente
+PUT {{baseUrl}}/marcas-vehiculo/13
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "brand_name": "Marca actualizada",
+  "country": "País"
+}
+
+### 5. Eliminar marca
+DELETE {{baseUrl}}/marcas-vehiculo/13
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 6. Crear marca con error de validación (sin país)
+POST {{baseUrl}}/marcas-vehiculo
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "brand_name": "Mazda"
+}
+
+### 7. Crear marca duplicada (debe fallar)
+POST {{baseUrl}}/marcas-vehiculo
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "brand_name": "Toyota",
+  "country": "Japón"
+}
+
+###############################################################################
+# PERSONAS
+###############################################################################
+
+### 8. Listar todas las personas
+GET {{baseUrl}}/personas
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 9. Obtener persona específica
+GET {{baseUrl}}/personas/1
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 10. Crear nueva persona
+POST {{baseUrl}}/personas
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "identification_number": "1234567890",
+  "name": "Juan Pérez"
+}
+
+### 11. Actualizar persona existente
+PUT {{baseUrl}}/personas/1
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "identification_number": "0987654321",
+  "name": "María González Actualizada"
+}
+
+### 12. Eliminar persona
+DELETE {{baseUrl}}/personas/16
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 13. Obtener vehículos de una persona
+GET {{baseUrl}}/personas/1/vehiculos
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 14. Crear persona con error de validación (sin nombre)
+POST {{baseUrl}}/personas
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "identification_number": "9999999999"
+}
+
+### 15. Crear persona con identificación duplicada (debe fallar)
+POST {{baseUrl}}/personas
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "identification_number": "1234567890",
+  "name": "Persona Duplicada"
+}
+
+###############################################################################
+# VEHÍCULOS
+###############################################################################
+
+### 16. Listar todos los vehículos (con relaciones)
+GET {{baseUrl}}/vehiculos
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 17. Obtener vehículo específico (con relaciones)
+GET {{baseUrl}}/vehiculos/1
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 18. Crear nuevo vehículo
+POST {{baseUrl}}/vehiculos
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "model": "Corolla 2024",
+  "vehicle_brand_id": 1,
+  "number_of_doors": 4,
+  "color": "Blanco"
+}
+
+### 19. Actualizar vehículo existente
+PUT {{baseUrl}}/vehiculos/1
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "model": "Corolla Hybrid 2024",
+  "vehicle_brand_id": 1,
+  "number_of_doors": 4,
+  "color": "Negro"
+}
+
+### 20. Eliminar vehículo
+DELETE {{baseUrl}}/vehiculos/26
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 21. Asignar propietario a vehículo
+POST {{baseUrl}}/vehiculos/1/propietarios
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "person_id": 1
+}
+
+### 22. Crear vehículo con error de validación (marca inexistente)
+POST {{baseUrl}}/vehiculos
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "model": "Modelo X",
+  "vehicle_brand_id": 999,
+  "number_of_doors": 4,
+  "color": "Rojo"
+}
+
+### 23. Crear vehículo con puertas inválidas (debe fallar)
+POST {{baseUrl}}/vehiculos
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "model": "Modelo Y",
+  "vehicle_brand_id": 1,
+  "number_of_doors": 10,
+  "color": "Azul"
+}
+
+### 24. Asignar propietario inexistente (debe fallar)
+POST {{baseUrl}}/vehiculos/1/propietarios
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "person_id": 999
+}
+
+### 25. Asignar propietario duplicado (debe fallar)
+POST {{baseUrl}}/vehiculos/1/propietarios
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "person_id": 1
+}
+
+###############################################################################
+# PRUEBAS DE RECURSOS NO ENCONTRADOS
+###############################################################################
+
+### 26. Obtener marca inexistente (404)
+GET {{baseUrl}}/marcas-vehiculo/999
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 27. Obtener persona inexistente (404)
+GET {{baseUrl}}/personas/999
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 28. Obtener vehículo inexistente (404)
+GET {{baseUrl}}/vehiculos/999
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+### 29. Actualizar marca inexistente (404)
+PUT {{baseUrl}}/marcas-vehiculo/999
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+  "brand_name": "Marca Inexistente",
+  "country": "País"
+}
+
+### 30. Eliminar persona inexistente (404)
+DELETE {{baseUrl}}/personas/999
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+###############################################################################
+# FIN DE PRUEBAS
+###############################################################################
+

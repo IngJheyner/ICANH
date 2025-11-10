@@ -2,6 +2,8 @@
 
 Prueba técnica de Laravel con API RESTful para gestión de vehículos, marcas y propietarios.
 
+> 📖 **Documentación del Uso de IA**: Este proyecto fue desarrollado con asistencia de IA. Ver [IA_USAGE.md](IA_USAGE.md) para detalles del proceso, prompts utilizados y análisis crítico.
+
 ## 🚀 Stack Tecnológico
 
 - **Framework Backend**: Laravel 10.x
