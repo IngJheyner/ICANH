@@ -372,9 +372,34 @@ docker-compose down -v
 bash fix-permissions.sh
 ```
 
+---
+
+## 🐍 Parte 3: Módulo Odoo (Desafío Avanzado Opcional)
+
+> **Nota**: Este es un desafío opcional para demostrar versatilidad en diferentes stacks tecnológicos.
+
+El proyecto incluye una implementación adicional de la misma lógica de negocio usando **Odoo v18** (Python).
+
+**Ubicación**: [`odoo_module/`](odoo_module/)
+
+**Stack adicional**:
+- Python 3.11+
+- Odoo 18 (Framework ERP)
+- PostgreSQL 15
+- API REST con controladores HTTP nativos de Odoo
+
+**Estado**: 🚧 En desarrollo incremental (commits progresivos)
+
+📖 Ver [`odoo_module/README.md`](odoo_module/README.md) para instrucciones específicas de Odoo.
+
+---
+
 ## 👨‍💻 Autor
 
 Desarrollado por Jheyner - Prueba Técnica PHP/Laravel
+
+**Stack Principal**: Laravel 11 + MySQL 8.0 + Docker  
+**Stack Adicional**: Odoo 18 + PostgreSQL + Python
 
 ## 📄 Licencia
 
