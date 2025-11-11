@@ -31,11 +31,12 @@ class VehicleBrandFactory extends Factory
             ['brand_name' => 'Renault', 'country' => 'Francia'],
         ];
 
-        // Seleccionar una marca aleatoria
+        // Seleccionar una marca aleatoria y añadir un sufijo único
         $brand = $this->faker->randomElement($brands);
+        $uniqueSuffix = $this->faker->unique()->numberBetween(1, 100000);
 
         return [
-            'brand_name' => $brand['brand_name'],
+            'brand_name' => $brand['brand_name'] . ' ' . $uniqueSuffix,
             'country' => $brand['country'],
         ];
     }

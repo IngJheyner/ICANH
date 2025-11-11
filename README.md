@@ -89,6 +89,56 @@ La API estará disponible en: **http://localhost:8000**
   - Usuario: `laravel_user`
   - Contraseña: `laravel_password`
 
+## 🧪 Testing (Pruebas Automatizadas)
+
+El proyecto incluye una suite completa de **47 tests automatizados** con PHPUnit que cubren:
+- ✅ Tests unitarios para relaciones entre modelos (ORM)
+- ✅ Tests de integración para todos los endpoints CRUD
+- ✅ Tests de validación (errores 422)
+- ✅ Tests de casos de error (404, duplicados, etc.)
+- ✅ Tests de endpoints de relaciones (vehículos de persona, asignar propietarios)
+
+### Ejecutar todos los tests
+
+```bash
+docker-compose exec app php artisan test
+```
+
+### Ejecutar tests específicos
+
+```bash
+# Ejecutar solo tests de VehicleBrand
+docker-compose exec app php artisan test --filter=VehicleBrandTest
+
+# Ejecutar solo tests de Person
+docker-compose exec app php artisan test --filter=PersonTest
+
+# Ejecutar solo tests de Vehicle
+docker-compose exec app php artisan test --filter=VehicleTest
+
+# Ejecutar solo tests unitarios
+docker-compose exec app php artisan test --testsuite=Unit
+```
+
+### Cobertura de Tests
+
+- **47 tests** en total
+- **240 assertions** verificadas
+- **100% de éxito** en la última ejecución
+- Configuración de base de datos SQLite en memoria para tests rápidos e aislados
+
+### Estructura de Tests
+
+```
+tests/
+├── Unit/
+│   └── ModelRelationshipTest.php   # Tests de relaciones ORM (8 tests)
+└── Feature/
+    ├── VehicleBrandTest.php         # Tests CRUD de marcas (12 tests)
+    ├── PersonTest.php               # Tests CRUD de personas (13 tests)
+    └── VehicleTest.php              # Tests CRUD de vehículos (14 tests)
+```
+
 ## 📊 Base de Datos y Modelos
 
 ### Migraciones
