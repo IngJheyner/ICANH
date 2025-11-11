@@ -24,7 +24,7 @@ Prueba técnica de Laravel con API RESTful para gestión de vehículos, marcas y
 ### Paso 1: Clonar el repositorio
 
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/IngJheyner/ICANH.git ( Se puede Descargar el zip. )
 cd Icanh
 ```
 
@@ -85,9 +85,73 @@ La API estará disponible en: **http://localhost:8000**
 ## 🌐 Acceso a los Servicios
 
 - **API Laravel**: http://localhost:8000
+- **Documentación Swagger**: http://localhost:8000/api/documentation
 - **PHPMyAdmin**: http://localhost:8080
   - Usuario: `laravel_user`
   - Contraseña: `laravel_password`
+- **Documentación del Código**: `docs/phpdoc/index.html` (abrir en navegador)
+
+## 📚 Documentación Profesional
+
+El proyecto incluye documentación completa y profesional en dos formatos:
+
+### 1. 📖 Documentación de la API (Swagger/OpenAPI)
+
+Documentación interactiva de todos los endpoints de la API generada automáticamente con OpenAPI 3.0.
+
+**Acceso:** http://localhost:8000/api/documentation
+
+**Características:**
+- 📋 Listado completo de todos los endpoints (15 endpoints documentados)
+- 🔍 Descripción detallada de cada operación (GET, POST, PUT, DELETE)
+- 📝 Esquemas de request/response con ejemplos
+- ✅ Códigos de respuesta HTTP (200, 201, 404, 422)
+- 🎯 Probador integrado (Try it out) para cada endpoint
+- 📊 Modelos de datos documentados (VehicleBrand, Person, Vehicle)
+
+**Endpoints documentados:**
+- **Marcas de Vehículos** (5 endpoints): CRUD completo
+- **Personas** (6 endpoints): CRUD + obtener vehículos de persona
+- **Vehículos** (6 endpoints): CRUD + asignar propietarios
+
+**Regenerar documentación:**
+```bash
+docker-compose exec app php artisan l5-swagger:generate
+```
+
+### 2. 📘 Documentación del Código Fuente (phpDocumentor)
+
+Documentación HTML generada a partir de los docblocks del código fuente.
+
+**Acceso:** Abrir en navegador: `docs/phpdoc/index.html`
+
+> **Nota**: La documentación HTML ya está incluida en el repositorio y lista para usar. No necesitas regenerarla a menos que modifiques el código.
+
+**Contenido documentado:**
+- **Controladores** (3 archivos): VehicleBrandController, PersonController, VehicleController
+- **Modelos** (3 archivos): VehicleBrand, Person, Vehicle
+- **Resources** (3 archivos): API Resources para transformación de datos
+- **Requests** (4 archivos): Form Requests para validación
+- **Traits** (1 archivo): ApiResponseTrait para respuestas consistentes
+
+**Características:**
+- 🗂️ Navegación por namespaces y clases
+- 📖 Documentación de métodos públicos y privados
+- 🔗 Enlaces entre clases relacionadas
+- 📊 Diagramas de herencia
+- 🔍 Índice de búsqueda
+
+**Regenerar documentación** (solo si modificas el código):
+```bash
+# Requiere Docker instalado
+docker run --rm -v "$(pwd):/data" phpdoc/phpdoc:3 \
+  -d app/Http -d app/Models \
+  -t docs/phpdoc \
+  --title="API Vehículos - Documentación del Código"
+
+# Arreglar permisos después de regenerar
+bash fix-permissions.sh
+```
 
 ## 🧪 Testing (Pruebas Automatizadas)
 
@@ -307,36 +371,6 @@ docker-compose down -v
 # Arreglar permisos de archivos
 bash fix-permissions.sh
 ```
-
-## 🧪 Testing
-
-```bash
-# Ejecutar tests
-docker exec -it laravel_app php artisan test
-```
-
-## 📝 Documentación del Proceso con IA
-
-Este proyecto fue desarrollado con la asistencia de **Cursor** y el modelo **Claude 4.5 Sonnet**. 
-
-### Proceso de Desarrollo
-
-1. **Configuración inicial**: Creación de la estructura Docker con contenedores para PHP, MySQL y Nginx
-2. **Instalación de Laravel**: Configuración del framework dentro del entorno containerizado
-3. **Modelado de datos**: Diseño de las entidades y sus relaciones según los requisitos
-4. **Migraciones**: Creación de las tablas de base de datos con sus constraints
-5. **Modelos ORM**: Implementación de los modelos con sus relaciones Eloquent
-6. **Controladores API**: Desarrollo de los controladores RESTful con CRUD completo
-7. **Validaciones**: Implementación de Form Request classes para validar datos
-8. **Rutas**: Configuración de todas las rutas API incluyendo endpoints especiales
-
-### Ventajas del uso de IA
-
-- Aceleración del desarrollo inicial
-- Sugerencias de mejores prácticas de Laravel
-- Detección temprana de errores
-- Código más limpio y organizado
-- Documentación generada automáticamente
 
 ## 👨‍💻 Autor
 

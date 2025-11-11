@@ -40,6 +40,9 @@
 # Docker
 /temp
 
+# Documentación generada (phpDocumentor cache, pero mantener el HTML)
+/.phpdoc
+
 # Sistema operativo
 .DS_Store
 Thumbs.db
