@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Vista Tree (lista) de Marcas de Vehículos -->
+    <record id="view_vehicle_brand_tree" model="ir.ui.view">
+        <field name="name">gestion_vehiculos.vehicle_brand.tree</field>
+        <field name="model">gestion_vehiculos.vehicle_brand</field>
+        <field name="arch" type="xml">
+            <tree string="Marcas de Vehículos">
+                <field name="brand_name"/>
+                <field name="country"/>
+                <field name="create_date" string="Fecha de Creación"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Vista Form (formulario) de Marcas de Vehículos -->
+    <record id="view_vehicle_brand_form" model="ir.ui.view">
+        <field name="name">gestion_vehiculos.vehicle_brand.form</field>
+        <field name="model">gestion_vehiculos.vehicle_brand</field>
+        <field name="arch" type="xml">
+            <form string="Marca de Vehículo">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="brand_name" placeholder="Ej: Toyota"/>
+                        </group>
+                        <group>
+                            <field name="country" placeholder="Ej: Japón"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Vehículos de esta Marca">
+                            <field name="vehicle_ids">
+                                <tree>
+                                    <field name="model"/>
+                                    <field name="color"/>
+                                    <field name="number_of_doors"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Vista Search (filtros y búsqueda) -->
+    <record id="view_vehicle_brand_search" model="ir.ui.view">
+        <field name="name">gestion_vehiculos.vehicle_brand.search</field>
+        <field name="model">gestion_vehiculos.vehicle_brand</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Marcas">
+                <field name="brand_name"/>
+                <field name="country"/>
+                <filter string="Japón" name="japan" domain="[('country', '=', 'Japón')]"/>
+                <filter string="Alemania" name="germany" domain="[('country', '=', 'Alemania')]"/>
+                <filter string="USA" name="usa" domain="[('country', '=', 'Estados Unidos')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="País" name="group_country" context="{'group_by': 'country'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Acción (action) para abrir las vistas -->
+    <record id="action_vehicle_brand" model="ir.actions.act_window">
+        <field name="name">Marcas de Vehículos</field>
+        <field name="res_model">gestion_vehiculos.vehicle_brand</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea tu primera marca de vehículo
+            </p>
+            <p>
+                Las marcas de vehículos son fabricantes como Toyota, Honda, Ford, etc.
+            </p>
+        </field>
+    </record>
+
+</odoo>
+

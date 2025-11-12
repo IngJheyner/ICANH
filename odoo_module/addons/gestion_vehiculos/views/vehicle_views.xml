@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Vista Tree de Vehículos -->
+    <record id="view_vehicle_tree" model="ir.ui.view">
+        <field name="name">gestion_vehiculos.vehicle.tree</field>
+        <field name="model">gestion_vehiculos.vehicle</field>
+        <field name="arch" type="xml">
+            <tree string="Vehículos">
+                <field name="vehicle_brand_id"/>
+                <field name="model"/>
+                <field name="color"/>
+                <field name="number_of_doors"/>
+                <field name="owner_count" string="Propietarios"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Vista Form de Vehículos -->
+    <record id="view_vehicle_form" model="ir.ui.view">
+        <field name="name">gestion_vehiculos.vehicle.form</field>
+        <field name="model">gestion_vehiculos.vehicle</field>
+        <field name="arch" type="xml">
+            <form string="Vehículo">
+                <header>
+                    <button name="action_view_owners" type="object" 
+                            string="Ver Propietarios" class="oe_highlight"
+                            invisible="owner_count == 0"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_owners" type="object" class="oe_stat_button" icon="fa-users">
+                            <field name="owner_count" widget="statinfo" string="Propietarios"/>
+                        </button>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="vehicle_brand_id" options="{'no_create': True}"/>
+                            <field name="model" placeholder="Ej: Corolla, Civic, Mustang"/>
+                        </group>
+                        <group>
+                            <field name="color" placeholder="Ej: Rojo, Azul, Negro"/>
+                            <field name="number_of_doors"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <field name="full_name" readonly="1"/>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Propietarios">
+                            <field name="owner_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="identification_number"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Vista Search -->
+    <record id="view_vehicle_search" model="ir.ui.view">
+        <field name="name">gestion_vehiculos.vehicle.search</field>
+        <field name="model">gestion_vehiculos.vehicle</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Vehículos">
+                <field name="model"/>
+                <field name="vehicle_brand_id"/>
+                <field name="color"/>
+                <filter string="Con Propietario" name="with_owner" domain="[('owner_count', '>', 0)]"/>
+                <filter string="Sin Propietario" name="without_owner" domain="[('owner_count', '=', 0)]"/>
+                <filter string="2 Puertas" name="doors_2" domain="[('number_of_doors', '=', 2)]"/>
+                <filter string="4 Puertas" name="doors_4" domain="[('number_of_doors', '=', 4)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Marca" name="group_brand" context="{'group_by': 'vehicle_brand_id'}"/>
+                    <filter string="Color" name="group_color" context="{'group_by': 'color'}"/>
+                    <filter string="Puertas" name="group_doors" context="{'group_by': 'number_of_doors'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Acción -->
+    <record id="action_vehicle" model="ir.actions.act_window">
+        <field name="name">Vehículos</field>
+        <field name="res_model">gestion_vehiculos.vehicle</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Registra tu primer vehículo
+            </p>
+            <p>
+                Los vehículos están asociados a una marca y pueden tener múltiples propietarios.
+            </p>
+        </field>
+    </record>
+
+</odoo>
+

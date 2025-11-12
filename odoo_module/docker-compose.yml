@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # PostgreSQL: Base de datos para Odoo
+  db_odoo:
+    image: postgres:15
+    container_name: odoo_postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo_password
+    volumes:
+      - odoo_postgres_data:/var/lib/postgresql/data
+    networks:
+      - odoo_network
+    ports:
+      - "5433:5432"  # Puerto 5433 en host para no conflictar con otros PostgreSQL
+
+  # Odoo 18: El servidor principal
+  odoo:
+    image: odoo:18.0
+    container_name: odoo_server
+    depends_on:
+      - db_odoo
+    ports:
+      - "8069:8069"  # Puerto web de Odoo
+      - "8072:8072"  # Puerto para longpolling (actualizaciones en tiempo real)
+    environment:
+      - HOST=db_odoo
+      - USER=odoo
+      - PASSWORD=odoo_password
+    volumes:
+      # Montar nuestra carpeta de módulos personalizados
+      - ./addons:/mnt/extra-addons
+      # Persistir configuración y datos de Odoo
+      - odoo_data:/var/lib/odoo
+    networks:
+      - odoo_network
+    command: --dev=all  # Modo desarrollo: recarga automática
+
+volumes:
+  odoo_postgres_data:
+    driver: local
+  odoo_data:
+    driver: local
+
+networks:
+  odoo_network:
+    driver: bridge
+

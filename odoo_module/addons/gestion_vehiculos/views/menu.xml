@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Menú principal (root) -->
+    <menuitem id="menu_gestion_vehiculos_root"
+              name="Gestión Vehículos"
+              sequence="10"
+              web_icon="gestion_vehiculos,static/description/icon.png"/>
+    
+    <!-- Submenús -->
+    <menuitem id="menu_gestion_vehiculos_main"
+              name="Gestión"
+              parent="menu_gestion_vehiculos_root"
+              sequence="1"/>
+    
+    <!-- Opción: Marcas de Vehículos -->
+    <menuitem id="menu_vehicle_brand"
+              name="Marcas de Vehículos"
+              parent="menu_gestion_vehiculos_main"
+              action="action_vehicle_brand"
+              sequence="10"/>
+    
+    <!-- Opción: Vehículos -->
+    <menuitem id="menu_vehicle"
+              name="Vehículos"
+              parent="menu_gestion_vehiculos_main"
+              action="action_vehicle"
+              sequence="20"/>
+    
+    <!-- Opción: Personas -->
+    <menuitem id="menu_person"
+              name="Personas"
+              parent="menu_gestion_vehiculos_main"
+              action="action_person"
+              sequence="30"/>
+
+</odoo>
+
