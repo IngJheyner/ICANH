@@ -6,13 +6,13 @@
         <field name="name">gestion_vehiculos.vehicle.tree</field>
         <field name="model">gestion_vehiculos.vehicle</field>
         <field name="arch" type="xml">
-            <tree string="Vehículos">
+            <list string="Vehículos">
                 <field name="vehicle_brand_id"/>
                 <field name="model"/>
                 <field name="color"/>
                 <field name="number_of_doors"/>
                 <field name="owner_count" string="Propietarios"/>
-            </tree>
+            </list>
         </field>
     </record>
     
@@ -52,10 +52,10 @@
                     <notebook>
                         <page string="Propietarios">
                             <field name="owner_ids">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="identification_number"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -90,7 +90,7 @@
     <record id="action_vehicle" model="ir.actions.act_window">
         <field name="name">Vehículos</field>
         <field name="res_model">gestion_vehiculos.vehicle</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Registra tu primer vehículo

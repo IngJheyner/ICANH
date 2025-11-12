@@ -6,11 +6,11 @@
         <field name="name">gestion_vehiculos.vehicle_brand.tree</field>
         <field name="model">gestion_vehiculos.vehicle_brand</field>
         <field name="arch" type="xml">
-            <tree string="Marcas de Vehículos">
+            <list string="Marcas de Vehículos">
                 <field name="brand_name"/>
                 <field name="country"/>
                 <field name="create_date" string="Fecha de Creación"/>
-            </tree>
+            </list>
         </field>
     </record>
     
@@ -33,11 +33,11 @@
                     <notebook>
                         <page string="Vehículos de esta Marca">
                             <field name="vehicle_ids">
-                                <tree>
+                                <list>
                                     <field name="model"/>
                                     <field name="color"/>
                                     <field name="number_of_doors"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -68,7 +68,7 @@
     <record id="action_vehicle_brand" model="ir.actions.act_window">
         <field name="name">Marcas de Vehículos</field>
         <field name="res_model">gestion_vehiculos.vehicle_brand</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Crea tu primera marca de vehículo

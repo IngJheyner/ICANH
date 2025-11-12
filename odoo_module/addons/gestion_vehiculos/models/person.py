@@ -143,7 +143,7 @@ class Person(models.Model):
             'type': 'ir.actions.act_window',
             'name': f'Vehículos de {self.name}',
             'res_model': 'gestion_vehiculos.vehicle',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('owner_ids', 'in', self.ids)],
             'context': {'default_owner_ids': [(4, self.id)]},
         }

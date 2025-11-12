@@ -179,7 +179,7 @@ class Vehicle(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Agregar Propietario',
             'res_model': 'gestion_vehiculos.person',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('id', 'not in', self.owner_ids.ids)],
             'target': 'new',
         }
@@ -193,7 +193,7 @@ class Vehicle(models.Model):
             'type': 'ir.actions.act_window',
             'name': f'Propietarios de {self.full_name}',
             'res_model': 'gestion_vehiculos.person',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('id', 'in', self.owner_ids.ids)],
         }
 

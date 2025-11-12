@@ -6,12 +6,12 @@
         <field name="name">gestion_vehiculos.person.tree</field>
         <field name="model">gestion_vehiculos.person</field>
         <field name="arch" type="xml">
-            <tree string="Personas">
+            <list string="Personas">
                 <field name="name"/>
                 <field name="identification_number"/>
                 <field name="vehicle_count" string="Vehículos"/>
                 <field name="create_date" string="Fecha de Creación"/>
-            </tree>
+            </list>
         </field>
     </record>
     
@@ -45,12 +45,12 @@
                     <notebook>
                         <page string="Vehículos">
                             <field name="vehicle_ids">
-                                <tree>
+                                <list>
                                     <field name="vehicle_brand_id"/>
                                     <field name="model"/>
                                     <field name="color"/>
                                     <field name="number_of_doors"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -80,7 +80,7 @@
     <record id="action_person" model="ir.actions.act_window">
         <field name="name">Personas</field>
         <field name="res_model">gestion_vehiculos.person</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Registra tu primera persona
